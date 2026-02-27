@@ -20,17 +20,15 @@ Doing so will require you to install the neu CLI. Instructions can be found [her
 
 ## How to use
 
-1. On startup, you'll have the option to convert a combined ROM to a split ROM, or a split ROM into a combined ROM. The combined ROM is used for FightCade 1 as well as earlier builds 2.of Mame and Final Burn Alpha. It's also used for several older romhacking tools such as XCOPY.<br>
-   The split ROM is the format used on FightCade 2, the more recent builds of Mame, and all builds of Final Burn Neo.
+1. On startup, you'll have the option to convert a combined ROM to a split ROM, or a split ROM into a combined ROM. The combined ROM is used for FightCade 1 as well as earlier builds 2.of Mame and Final Burn Alpha. It's also used for several older romhacking tools such as XCOPY. The split ROM is the format used on FightCade 2, the more recent builds of Mame, and all builds of Final Burn Neo.
 
 2. After selecing either option, pick the game you're attempting to convert, of which there are six:
-
-- Red Earth
-- Street Fighter III: New Generation
-- Street Fighter III Second Impact: Giant Attack
-- JoJo's Bizarre Adventure / JoJo's Venture
-- Street Fighter III Third Strike: Fight for the Future
-- JoJo's Bizarre Adventure: Heritage for the Future
+   - Red Earth
+   - Street Fighter III: New Generation
+   - Street Fighter III Second Impact: Giant Attack
+   - JoJo's Bizarre Adventure / JoJo's Venture
+   - Street Fighter III Third Strike: Fight for the Future
+   - JoJo's Bizarre Adventure: Heritage for the Future
 
 3. You will be asked to select the file directory where the ROM you want to convert is located. Make sure it has been extracted from the .zip file.
 
