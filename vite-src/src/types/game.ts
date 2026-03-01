@@ -1,4 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type GameContexType = {
   game: string;
-  setGame: void;
+  setGame: Dispatch<SetStateAction<string>>;
 };

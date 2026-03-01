@@ -31,7 +31,7 @@ function CrossfadeCarousel({
           className="carousel-item absolute w-full h-full"
         >
           <img
-            src={`/assets/${image}`}
+            src={image}
             style={{
               opacity: active === index ? 1 : 0,
               transition: `opacity ${transition}ms`,
