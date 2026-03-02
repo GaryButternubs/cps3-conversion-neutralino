@@ -13,7 +13,11 @@ function App() {
   return (
     <GameContext value={{ game, setGame }}>
       <DynamicBackground>
-        <RouterProvider router={router} />
+        <div className="flex items-center justify-center w-full h-full">
+          <div className="bg-base-100 my-8 mx-16 p-8 rounded-xl box-border">
+            <RouterProvider router={router} />
+          </div>
+        </div>
       </DynamicBackground>
     </GameContext>
   );

@@ -13,14 +13,14 @@ You can get the latest build of the project from the [Releases](https://github.c
 You can build the project manually as well by cloning this repo and using the following command:
 
 ```bash
-neu run
+neu build
 ```
 
-Doing so will require you to install the neu CLI. Instructions can be found [here](https://neutralino.js.org/docs/getting-started/your-first-neutralinojs-app).
+Doing so will require you to install the neu CLI. Instructions can be found [here](https://neutralino.js.org/docs/getting-started/your-first-neutralinojs-app). The resulting project will be available in the "dist" directory for use.
 
 ## How to use
 
-1. On startup, you'll have the option to convert a combined ROM to a split ROM, or a split ROM into a combined ROM. The combined ROM is used for FightCade 1 as well as earlier builds 2.of Mame and Final Burn Alpha. It's also used for several older romhacking tools such as XCOPY. The split ROM is the format used on FightCade 2, the more recent builds of Mame, and all builds of Final Burn Neo.
+1. On startup, you'll have the option to convert a combined ROM to a split ROM, or a split ROM into a combined ROM. The combined ROM is used for FightCade 1 as well as earlier builds of Mame and Final Burn Alpha. It's also used for several older romhacking tools such as X.C.O.P.Y. The split ROM is the format used on FightCade 2, the more recent builds of Mame, and all builds of Final Burn Neo.
 
 2. After selecing either option, pick the game you're attempting to convert, of which there are six:
    - Red Earth

@@ -1,8 +1,43 @@
+import CombinedModal from "./home/CombinedModal";
+import SplitModal from "./home/SplitModal";
+
 function Home() {
   return (
-    <h1 className="text-center text-4xl text-white bg-black/75 p-2">
-      Hello World!
-    </h1>
+    <>
+      <header className="text-center mb-20">
+        <h1 className="text-4xl font-bold">CPS3 ROM Conversion Tool</h1>
+        <h2 className="text-md">
+          Select one of the options below to get started.
+        </h2>
+      </header>
+      <main className="flex justify-between gap-8">
+        <div className="flex flex-col gap-1">
+          <div className="tooltip">
+            <div className="tooltip-content p-3">
+              ie. (10, 20, 30, etc.) to (xxx-simm1.0, xxx-simm1.1, xxx-simm1.2,
+              etc.)
+            </div>
+            <a className="btn btn-neutral" href="/selectGame?type=0">
+              Convert a Combined ROM to a Split ROM
+            </a>
+          </div>
+          <CombinedModal />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <div className="tooltip">
+            <div className="tooltip-content p-3">
+              ie. (xxx-simm1.0, xxx-simm1.1, xxx-simm1.2, etc.) to (10, 20, 30,
+              etc.)
+            </div>
+            <a className="btn btn-neutral" href="/selectGame?type=1">
+              Convert a Split ROM to a Combined ROM
+            </a>
+          </div>
+          <SplitModal />
+        </div>
+      </main>
+    </>
   );
 }
 
