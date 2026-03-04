@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import CombinedModal from "./home/CombinedModal";
 import SplitModal from "./home/SplitModal";
 
@@ -17,9 +18,9 @@ function Home() {
               ie. (10, 20, 30, etc.) to (xxx-simm1.0, xxx-simm1.1, xxx-simm1.2,
               etc.)
             </div>
-            <a className="btn btn-neutral" href="/selectGame?type=0">
+            <NavLink to="/selectGame/combined" className="btn btn-neutral p-2">
               Convert a Combined ROM to a Split ROM
-            </a>
+            </NavLink>
           </div>
           <CombinedModal />
         </div>
@@ -30,9 +31,9 @@ function Home() {
               ie. (xxx-simm1.0, xxx-simm1.1, xxx-simm1.2, etc.) to (10, 20, 30,
               etc.)
             </div>
-            <a className="btn btn-neutral" href="/selectGame?type=1">
+            <NavLink to="/selectGame/split" className="btn btn-neutral p-2">
               Convert a Split ROM to a Combined ROM
-            </a>
+            </NavLink>
           </div>
           <SplitModal />
         </div>

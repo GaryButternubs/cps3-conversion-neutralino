@@ -21,7 +21,7 @@ function CrossfadeCarousel({
     }, interval);
 
     return () => clearInterval(id);
-  }, []);
+  }, [interval]);
 
   return (
     <div className="-z-1 absolute carousel w-full h-full">
