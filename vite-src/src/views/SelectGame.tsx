@@ -1,5 +1,4 @@
 import { NavLink, useParams } from "react-router";
-import { Images } from "../types/types";
 import { Game, GameData } from "../types/types";
 
 function SelectGame() {

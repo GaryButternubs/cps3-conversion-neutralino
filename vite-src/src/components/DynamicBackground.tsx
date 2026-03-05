@@ -1,7 +1,7 @@
 import { ReactNode, useContext } from "react";
 import { GameContext } from "../GameContext";
 import { Game, GameList, GameData } from "../types/types";
-import CrossfadeCarousel from "./Crossfade-Carousel";
+import CrossfadeCarousel from "./CrossfadeCarousel";
 
 function DynamicBackground({ children }: { children: ReactNode }) {
   const fadeinDuration = 1500; // 1.5 seconds to fade-in

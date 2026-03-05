@@ -9,7 +9,8 @@
   "enableNativeAPI": true,
   "nativeAllowList": [
     "app.*",
-    "filesystem.readDirectory"
+    "os.*",
+    "filesystem.*"
   ],
   "singlePageServe": true,
   "modes": {
