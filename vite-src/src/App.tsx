@@ -14,7 +14,7 @@ function App() {
     <GameContext value={{ game, setGame }}>
       <DynamicBackground>
         <div className="flex items-center justify-center w-full h-full">
-          <div className="bg-base-100 my-8 mx-16 p-8 rounded-xl box-border">
+          <div className="overflow-y-auto max-h-[90vh] bg-base-100 my-8 mx-16 p-8 rounded-xl box-border">
             <RouterProvider router={router} />
           </div>
         </div>

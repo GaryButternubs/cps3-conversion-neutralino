@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
-import { Game, GameData, GameList } from "../types/types";
-import { MouseEvent } from "react";
+import { GameData, GameList } from "../types/types";
 import DirectorySelect from "../components/DirectorySelect";
+import RequiredFiles from "./selectInput/RequiredFiles";
 
 function SelectInput() {
   const { type, game } = useParams();
@@ -21,11 +21,15 @@ function SelectInput() {
         <h2 className="text-center text-md font-bold">
           Please select the directory containing the following files:
         </h2>
-        <p className="text-center">
+        {/* <p className="text-center">
           {type === "combined"
             ? GameData[game as keyof GameList].combinedFiles.join(", ")
             : ""}
-        </p>
+        </p> */}
+        <RequiredFiles
+          type={type ?? "combined"}
+          game={GameData[game as keyof GameList]}
+        />
         <p className="text-center">
           Make sure they've been extracted from {game}.zip.
         </p>
