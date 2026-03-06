@@ -6,10 +6,18 @@ import secondimpactBG from "../assets/2i.jpg";
 import ventureBG from "../assets/venture.jpg";
 import thirdstrikeBG from "../assets/3s.jpg";
 import heritageBG from "../assets/heritage.jpg";
+import { DirectoryEntry } from "@neutralinojs/lib";
 
 export type GameContexType = {
   game: string;
   setGame: Dispatch<SetStateAction<string>>;
+};
+
+export type ConvertContextType = {
+  files: Array<DirectoryEntry>;
+  setFiles: Dispatch<SetStateAction<Array<DirectoryEntry>>>;
+  outputDir: string;
+  setOutputDir: Dispatch<SetStateAction<string>>;
 };
 
 export interface Images {

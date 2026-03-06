@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { RouterProvider } from "react-router";
 import { GameContext } from "./GameContext";
+import { ConvertContext } from "./ConvertContext";
 import DynamicBackground from "./components/DynamicBackground";
 import router from "./routes";
 import "./App.css";
-
-import { filesystem } from "@neutralinojs/lib";
+import { DirectoryEntry } from "@neutralinojs/lib";
 
 function App() {
-  const [game, setGame] = useState("");
+  const [files, setFiles] = useState<Array<DirectoryEntry>>([]);
+  const [outputDir, setOutputDir] = useState<string>("");
 
   return (
-    <GameContext value={{ game, setGame }}>
+    <ConvertContext value={{ files, setFiles, outputDir, setOutputDir }}>
       <DynamicBackground>
         <div className="flex items-center justify-center w-full h-full">
           <div className="overflow-y-auto max-h-[90vh] bg-base-100 my-8 mx-16 p-8 rounded-xl box-border">
@@ -19,7 +20,7 @@ function App() {
           </div>
         </div>
       </DynamicBackground>
-    </GameContext>
+    </ConvertContext>
   );
 }
 
