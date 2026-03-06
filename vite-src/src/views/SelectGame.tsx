@@ -1,20 +1,13 @@
 import { NavLink, useParams } from "react-router";
 import { Game, GameData } from "../types/types";
+import Heading from "../components/Heading";
 
 function SelectGame() {
   const { type } = useParams();
 
   return (
     <>
-      <header className="text-center mb-20">
-        <h1 className="text-3xl font-bold">
-          Which game do you want to convert?
-        </h1>
-        <h2 className="text-md">
-          Converting from {type === "combined" ? "Combined" : "Split"} to{" "}
-          {type === "combined" ? "Split" : "Combined"}
-        </h2>
-      </header>
+      <Heading title="Which game do you want to convert?" type={type ?? ""} />
       <main className="flex flex-wrap gap-2 justify-center">
         {Object.values(GameData).map((game: Game, index) => (
           <NavLink

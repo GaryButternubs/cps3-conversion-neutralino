@@ -3,6 +3,7 @@ import Home from "./views/Home";
 import SelectGame from "./views/SelectGame";
 import SelectInput from "./views/SelectInput";
 import SelectOutput from "./views/SelectOutput";
+import Convert from "./views/Convert";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "selectOutput/:type/:game",
     Component: SelectOutput,
+  },
+  {
+    path: "convert/:type/:game",
+    Component: Convert,
   },
 ]);
 

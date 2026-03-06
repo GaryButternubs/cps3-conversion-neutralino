@@ -41,7 +41,7 @@ function DirectorySelect({
           Choose Folder
         </div>
         <div className="h-full flex flex-nowrap justify-center items-center px-4 overflow-hidden whitespace-nowrap">
-          {`...${directoryPath.substring(directoryPath.length - 25)}`}
+          {`...${directoryPath.substring(directoryPath.length - 20)}`}
         </div>
       </button>
     </>

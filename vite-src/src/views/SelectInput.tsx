@@ -2,9 +2,10 @@ import { MouseEvent, useContext, useMemo, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router";
 import { GameData, GameList } from "../types/types";
 import DirectorySelect from "../components/DirectorySelect";
-import RequiredFiles from "./selectInput/RequiredFiles";
+import RequiredFiles from "./selectInputOutput/RequiredFiles";
 import { DirectoryEntry } from "@neutralinojs/lib";
 import { ConvertContext } from "../ConvertContext";
+import Heading from "../components/Heading";
 
 function SelectInput() {
   const { type, game } = useParams();
@@ -67,17 +68,12 @@ function SelectInput() {
 
   return (
     <>
-      <header className="text-center mb-10">
-        <h1 className="text-3xl font-bold">
-          {GameData[game as keyof GameList].title}
-        </h1>
-        <h2 className="text-md">
-          Converting from {type === "combined" ? "Combined" : "Split"} ROM to{" "}
-          {type === "combined" ? "Split" : "Combined"} ROM
-        </h2>
-      </header>
+      <Heading
+        title={GameData[game as keyof GameList].title}
+        type={type ?? ""}
+      />
       <main>
-        <h2 className="text-center text-md font-bold">
+        <h2 className="text-center font-bold">
           Please select the directory containing the following files:
         </h2>
         <RequiredFiles
@@ -101,7 +97,7 @@ function SelectInput() {
           >
             Continue
           </button>
-          <NavLink to={"/"} className={"btn btn-secondary"}>
+          <NavLink to="/" className={"btn btn-secondary"}>
             Cancel
           </NavLink>
         </div>

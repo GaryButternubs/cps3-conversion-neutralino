@@ -1,8 +1,10 @@
 import { MouseEvent, useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { NavLink, useNavigate, useParams } from "react-router";
 import { ConvertContext } from "../ConvertContext";
 import { GameData, GameList } from "../types/types";
-import RequiredFiles from "./selectInput/RequiredFiles";
+import RequiredFiles from "./selectInputOutput/RequiredFiles";
+import DirectorySelect from "../components/DirectorySelect";
+import Heading from "../components/Heading";
 
 function SelectOutput() {
   const { type, game } = useParams();
@@ -19,23 +21,36 @@ function SelectOutput() {
 
   return (
     <>
-      <header className="text-center mb-10">
-        <h1 className="text-3xl font-bold">
-          {GameData[game as keyof GameList].title}
-        </h1>
-        <h2 className="text-md">
-          Converting from {type === "combined" ? "Combined" : "Split"} ROM to{" "}
-          {type === "combined" ? "Split" : "Combined"} ROM
-        </h2>
-      </header>
+      <Heading
+        title={GameData[game as keyof GameList].title}
+        type={type ?? ""}
+      />
       <main>
-        <h2 className="text-center text-md font-bold">
+        <h2 className="text-center font-bold">
           Please select a directory to store the following newly created files:
         </h2>
         <RequiredFiles
           type={(type ?? "combined") === "combined" ? "split" : "combined"}
           game={GameData[game as keyof GameList]}
         />
+        <p className="text-center">
+          Any duplicate files in this directory will be overwritten.
+        </p>
+        <div className="mt-5 flex justify-center">
+          <DirectorySelect setOutputDir={setTempOutputDir} />
+        </div>
+        <div className="mt-5 flex justify-center items-center gap-2">
+          <button
+            className="btn"
+            disabled={!tempOutputDir}
+            onClick={BeginConversion}
+          >
+            Continue
+          </button>
+          <NavLink to="/" className={"btn btn-secondary"}>
+            Cancel
+          </NavLink>
+        </div>
       </main>
     </>
   );
