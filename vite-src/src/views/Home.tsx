@@ -18,8 +18,8 @@ function Home() {
               ie. (10, 20, 30, etc.) to (xxx-simm1.0, xxx-simm1.1, xxx-simm1.2,
               etc.)
             </div>
-            <NavLink to="/selectGame/combined" className="btn btn-neutral p-2">
-              Convert a Combined ROM to a Split ROM
+            <NavLink to="/selectGame/combined" className="btn btn-neutral p-4">
+              Convert Combined ROM to Split ROM
             </NavLink>
           </div>
           <CombinedModal />
@@ -31,8 +31,8 @@ function Home() {
               ie. (xxx-simm1.0, xxx-simm1.1, xxx-simm1.2, etc.) to (10, 20, 30,
               etc.)
             </div>
-            <NavLink to="/selectGame/split" className="btn btn-neutral p-2">
-              Convert a Split ROM to a Combined ROM
+            <NavLink to="/selectGame/split" className="btn btn-neutral p-4">
+              Convert Split ROM to Combined ROM
             </NavLink>
           </div>
           <SplitModal />
