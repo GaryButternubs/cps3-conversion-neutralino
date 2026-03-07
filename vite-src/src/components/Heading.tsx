@@ -1,5 +1,3 @@
-import { GameData, GameList } from "../types/types";
-
 function Heading({ title, type }: { title: string; type: string }) {
   return (
     <header className="text-center mb-10">

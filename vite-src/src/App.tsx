@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RouterProvider } from "react-router";
-import { GameContext } from "./GameContext";
 import { ConvertContext } from "./ConvertContext";
 import DynamicBackground from "./components/DynamicBackground";
 import router from "./routes";
