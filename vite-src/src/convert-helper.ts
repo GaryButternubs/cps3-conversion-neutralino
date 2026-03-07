@@ -50,40 +50,45 @@ async function split(
   outputDir: string,
   dataROM = false,
 ) {
-  // Read binary file
-  console.log(`Reading ${input.entry} file`);
   const data = await filesystem.readBinaryFile(input.path);
   const buffer = new Uint8Array(data);
   const outputBuffers: ArrayBuffer[] = [];
   const outputViews: Uint8Array[] = [];
 
-  console.log(`Creating simm files.`);
+  const outputCount = outputNames.length;
+  const outputSize = buffer.length / outputCount;
 
-  for (let i = 0; i < outputNames.length; i++) {
-    outputBuffers[i] = new ArrayBuffer(buffer.length / outputNames.length);
+  for (let i = 0; i < outputCount; i++) {
+    outputBuffers[i] = new ArrayBuffer(outputSize);
     outputViews[i] = new Uint8Array(outputBuffers[i]);
   }
 
-  if (dataROM || outputViews.length <= 2) {
+  if (dataROM || outputCount <= 2) {
     for (let i = 0; i < buffer.length; i++) {
-      outputViews[i % outputViews.length][i / outputViews.length] = buffer[i];
+      const outputIndex = i % outputCount;
+      const offset = (i / outputCount) | 0; // Bitwise OR for floor division
+      outputViews[outputIndex][offset] = buffer[i];
     }
   } else {
-    const halfLen = outputViews.length / 2;
+    const halfLen = outputCount / 2;
+    const halfBuffer = buffer.length / 2;
 
-    // First two simm files are first half of combined file
-    for (let i = 0; i < buffer.length / 2; i++)
-      outputViews[i % halfLen][i / halfLen] = buffer[i];
+    // First half of file is the first two simms
+    for (let i = 0; i < halfBuffer; i++) {
+      const outputIndex = i % halfLen;
+      const offset = (i / halfLen) | 0;
+      outputViews[outputIndex][offset] = buffer[i];
+    }
 
-    // Second two simm files are latter half of combined file
-    for (let i = buffer.length / 2; i < buffer.length; i++) {
-      outputViews[(i % halfLen) + halfLen][(i - buffer.length / 2) / halfLen] =
-        buffer[i];
+    // Second half of file is the second two simms
+    for (let i = 0; i < halfBuffer; i++) {
+      const outputIndex = (i % halfLen) + halfLen;
+      const offset = (i / halfLen) | 0;
+      outputViews[outputIndex][offset] = buffer[halfBuffer + i];
     }
   }
 
-  for (let i = 0; i < outputViews.length; i++) {
-    console.log(`Writing to: ${outputDir}/${outputNames[i]}`);
+  for (let i = 0; i < outputCount; i++) {
     await filesystem.writeBinaryFile(
       `${outputDir}/${outputNames[i]}`,
       outputBuffers[i],
@@ -97,43 +102,44 @@ async function combine(
   outputDir: string,
   dataROM = false,
 ) {
-  const inputBuffers: ArrayBuffer[] = [];
   const inputViews: Uint8Array[] = [];
 
   for (let i = 0; i < input.length; i++) {
-    console.log(`Reading ${input[i].entry}`);
     const buffer = await filesystem.readBinaryFile(input[i].path);
-    inputBuffers.push(buffer);
-    inputViews.push(new Uint8Array(inputBuffers[i]));
+    inputViews.push(new Uint8Array(buffer));
   }
 
-  const outputBuffer = new ArrayBuffer(
-    inputViews[0].length * inputViews.length,
-  );
+  const inputCount = inputViews.length;
+  const inputSize = inputViews[0].length;
+  const outputBuffer = new ArrayBuffer(inputSize * inputCount);
   const outputView = new Uint8Array(outputBuffer);
 
-  console.log(`Creating file ${outputName}`);
-
-  if (dataROM || inputViews.length <= 2) {
+  if (dataROM || inputCount <= 2) {
     for (let i = 0; i < outputView.length; i++) {
-      outputView[i] = inputViews[i % inputViews.length][i / inputViews.length];
+      const inputIndex = i % inputCount;
+      const offset = (i / inputCount) | 0;
+      outputView[i] = inputViews[inputIndex][offset];
     }
   } else {
-    const halfLen = inputViews.length / 2;
-    for (let i = 0; i < outputView.length / 2; i++)
-      outputView[i] = inputViews[i % halfLen][i / halfLen];
+    const halfLen = inputCount / 2;
+    const halfOutput = outputView.length / 2;
 
-    for (let i = outputView.length / 2; i < outputView.length; i++) {
-      outputView[i] =
-        inputViews[(i % halfLen) + halfLen][
-          (i - outputView.length / 2) / halfLen
-        ];
+    // First half of file is the first two simms
+    for (let i = 0; i < halfOutput; i++) {
+      const inputIndex = i % halfLen;
+      const offset = (i / halfLen) | 0;
+      outputView[i] = inputViews[inputIndex][offset];
+    }
+
+    // Second half of file is the second two simms
+    for (let i = 0; i < halfOutput; i++) {
+      const inputIndex = (i % halfLen) + halfLen;
+      const offset = (i / halfLen) | 0;
+      outputView[halfOutput + i] = inputViews[inputIndex][offset];
     }
   }
 
-  console.log(`Writing to file ${outputDir}/${outputName}`);
   await filesystem.writeBinaryFile(`${outputDir}/${outputName}`, outputBuffer);
-  console.log(`Finished writing to ${outputName}`);
 }
 
 export default convertROM;
